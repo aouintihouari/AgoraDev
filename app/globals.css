@@ -1,8 +1,17 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @plugin "@tailwindcss/typography";
 
 @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
   :root {
     --background: oklch(0.9779 0.0042 56.3756);
     --foreground: oklch(0.2178 0 0);
@@ -37,6 +46,8 @@
     --sidebar-border: oklch(0.9355 0.0324 80.9937);
     --sidebar-ring: oklch(0.465 0.147 24.9381);
 
+    --logo-primary: oklch(56.717% 0.17266 24.485);
+    --logo-secondary: oklch(64.117% 0.12008 67.907);
     /* Font definitions */
     --font-sans: Poppins, sans-serif;
     --font-serif: Libre Baskerville, serif;
@@ -53,6 +64,8 @@
     --shadow-lg: 1px 1px 16px -2px hsl(0 63% 18% / 0.12), 1px 4px 6px -3px hsl(0 63% 18% / 0.12);
     --shadow-xl: 1px 1px 16px -2px hsl(0 63% 18% / 0.12), 1px 8px 10px -3px hsl(0 63% 18% / 0.12);
     --shadow-2xl: 1px 1px 16px -2px hsl(0 63% 18% / 0.3);
+
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -88,6 +101,9 @@
     --sidebar-accent-foreground: oklch(0.9619 0.058 95.6174);
     --sidebar-border: oklch(0.3741 0.0087 67.5582);
     --sidebar-ring: oklch(0.5054 0.1905 27.5181);
+
+    --logo-primary: oklch(0.65 0.1248 22.78);
+    --logo-secondary: oklch(0.7386 0.0773 78.76);
   }
 }
 
@@ -97,6 +113,9 @@
   /* Mapping Colors */
   --color-primary-100: var(--primary-foreground); /* Light accent */
   --color-primary-500: var(--primary); /* Main Brand Color (Red/Brown) */
+
+  --color-logo-primary: var(--logo-primary);
+  --color-logo-secondary: var(--logo-secondary);
 
   /* Dark palette mapping */
   --color-dark-100: var(--background); /* Main Dark BG */
@@ -193,16 +212,9 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
-}
-
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
 @utility background-light850_dark100 {
@@ -466,12 +478,6 @@
 
 @utility tab {
   @apply dark:bg-dark-400! bg-light-800! text-light-500! dark:data-[state=active]:bg-dark-300! data-[state=active]:bg-primary-100! data-[state=active]:text-primary-500! min-h-full!;
-}
-
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
 }
 
 .custom-scrollbar::-webkit-scrollbar {

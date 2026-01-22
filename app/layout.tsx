@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins, Libre_Baskerville, IBM_Plex_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import Navbar from "@/components/navigation/navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,9 +31,12 @@ export const metadata: Metadata = {
 
 const layout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} ${libreBaskerville.variable} ${ibmPlexMono.variable} antialiased`}>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
