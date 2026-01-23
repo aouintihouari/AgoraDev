@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
-import { Poppins, Libre_Baskerville, IBM_Plex_Mono } from "next/font/google";
 import { ReactNode } from "react";
-import "./globals.css";
+import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import Navbar from "@/components/navigation/navbar";
+import { Poppins, Libre_Baskerville, IBM_Plex_Mono } from "next/font/google";
+import "./globals.css";
+import { Toaster } from "sonner";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,15 +31,19 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
 };
 
-const layout = ({ children }: Readonly<{ children: ReactNode }>) => {
+const layout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} ${libreBaskerville.variable} ${ibmPlexMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Navbar />
-          {children}
-        </ThemeProvider>
-      </body>
+      <SessionProvider session={session}>
+        <body className={`${poppins.variable} ${libreBaskerville.variable} ${ibmPlexMono.variable} antialiased`}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
 };
