@@ -29,7 +29,7 @@ const NavLinks = ({ isMobileNav }: { isMobileNav: boolean }) => {
             key={item.label}
             className={cn(
               isActive ? "primary-gradient text-light-900 rounded-lg dark:text-white" : "text-dark-900 dark:text-white",
-              "mx-4 flex items-center justify-start gap-4 bg-transparent p-4"
+              "mx-4 flex items-center justify-start gap-4 bg-transparent p-4 sm:mx-0"
             )}
           >
             <Image

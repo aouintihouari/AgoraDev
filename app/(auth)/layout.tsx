@@ -8,7 +8,10 @@ const layout = ({ children }: { children: ReactNode }) => {
       <section className="light-border background-light800_dark200 shadow-light100_dark100 min-w-full rounded-[10px] border px-4 py-10 shadow-md sm:min-w-130 sm:px-8">
         <div className="flex items-center justify-between gap-2">
           <div className="space-y-2.5">
-            <h1 className="h2-bold text-foreground">Join AgoraDev</h1>
+            <h1 className="h2-bold text-foreground">
+              Join <span className="text-logo-secondary font-bold">AGORA</span>
+              <span className="text-logo-primary ml-1 font-semibold italic">dev</span>
+            </h1>
             <p className="paragraph-regular text-muted-foreground">To get your questions answered</p>
           </div>
         </div>
