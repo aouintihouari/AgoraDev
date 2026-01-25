@@ -590,3 +590,46 @@ code {
   display: grid !important;
   width: 100% !important;
 }
+
+.markdown-editor h1 {
+  @apply mt-4 mb-2 text-3xl font-bold;
+}
+.markdown-editor h2 {
+  @apply mt-3 mb-2 text-2xl font-bold;
+}
+.markdown-editor h3 {
+  @apply mt-2 mb-1 text-xl font-bold;
+}
+.markdown-editor ul {
+  @apply ml-4 list-inside list-disc;
+}
+.markdown-editor ol {
+  @apply ml-4 list-inside list-decimal;
+}
+.markdown-editor blockquote {
+  @apply border-l-4 border-slate-300 pl-4 text-slate-600 italic dark:text-slate-300;
+}
+.markdown-editor a {
+  @apply text-blue-500 underline;
+}
+
+.mdxeditor-content {
+  padding: 1rem !important;
+  min-height: 300px;
+}
+
+.mdxeditor-toolbar {
+  z-index: 10;
+  border-bottom: 1px solid #e5e7eb;
+}
+.dark .mdxeditor-toolbar {
+  border-bottom: 1px solid #1f2937;
+}
+
+.markdown-editor [contenteditable="true"] {
+  @apply text-dark-300 dark:text-light-700;
+}
+
+.mdxeditor-content {
+  @apply text-slate-900 dark:text-slate-100;
+}

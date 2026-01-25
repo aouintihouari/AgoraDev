@@ -31,7 +31,7 @@ const NavLinks = ({ isMobileNav }: { isMobileNav: boolean }) => {
               isActive
                 ? "primary-gradient dark:text-logo-secondary text-logo-secondary flex items-center rounded-lg"
                 : "text-logo-secondary dark:text-logo-secondary",
-              "mx-4 flex items-center justify-start gap-4 bg-transparent p-4 sm:mx-0"
+              "mx-4 flex items-center justify-start gap-4 bg-transparent p-4 font-serif sm:mx-0"
             )}
           >
             <Image src={item.imgURL} alt={item.label} width={20} height={20} className={cn({ "": !isActive })} />
