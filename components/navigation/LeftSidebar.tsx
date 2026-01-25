@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 
 const LeftSidebar = () => {
   return (
-    <section className="custom-scrollbar background-light900_dark200 shadow-light-300 sticky top-0 left-0 flex h-screen w-fit flex-col justify-between overflow-y-auto border-r p-6 pt-36 max-sm:hidden lg:w-66.5">
+    <section className="background-light900_dark200 shadow-light-300 sticky top-0 left-0 flex h-full min-h-screen w-fit flex-col justify-between overflow-y-auto border-r p-6 pt-36 max-sm:hidden lg:w-66.5">
       <div className="flex flex-1 flex-col gap-6">
         <NavLinks isMobileNav={false} />
       </div>

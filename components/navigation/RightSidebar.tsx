@@ -22,9 +22,9 @@ const popularTags = [
 
 const RightSidebar = () => {
   return (
-    <section className="custom-scrollbar shadow-light-300 light-border background-light900_dark200 sticky top-0 right-0 flex h-screen w-87.5 flex-col gap-6 overflow-y-auto border-l p-6 pt-36 max-xl:hidden">
+    <section className="shadow-light-300 light-border background-light900_dark200 sticky top-0 right-0 flex h-full min-h-screen w-87.5 flex-col gap-6 overflow-y-auto border-l p-6 pt-36 max-xl:hidden">
       <div>
-        <h3 className="h3-bold text-shadow-amber-800 dark:text-white">Top Questions</h3>
+        <h3 className="h3-bold text-logo-secondary">Top Questions</h3>
         <div className="mt-7 flex w-full flex-col gap-7.5">
           {hotQuestions.map(({ _id, title }) => (
             <Link
@@ -32,15 +32,21 @@ const RightSidebar = () => {
               href={ROUTES.PROFILE(_id)}
               className="flex cursor-pointer items-center justify-between gap-7"
             >
-              <p className="body-medium text-shadow-amber-800 dark:text-white">{title}</p>
-              <Image src="/icons/chevron-right.svg" alt="Chevron" width={20} height={20} className="invert-colors" />
+              <p className="body-medium hover:text-logo-primary! text-shadow-amber-800 dark:text-white">{title}</p>
+              <Image
+                src="/icons/chevron-right.svg"
+                alt="Chevron"
+                width={20}
+                height={20}
+                className="invert-colors hover:text-logo-secondary!"
+              />
             </Link>
           ))}
         </div>
       </div>
 
       <div className="mt-16">
-        <h3 className="h3-bold text-shadow-amber-800 dark:text-white">Popular Tags</h3>
+        <h3 className="h3-bold text-logo-secondary">Popular Tags</h3>
         <div className="mt-7 flex flex-col gap-4">
           {popularTags.map(({ _id, name, questions }) => (
             <TagCard key={_id} _id={_id} name={name} questions={questions} showCount compact />

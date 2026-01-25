@@ -48,6 +48,9 @@
 
     --logo-primary: oklch(56.717% 0.17266 24.485);
     --logo-secondary: oklch(64.117% 0.12008 67.907);
+    --btn-primary-bg: oklch(59% 0.14 67.9);
+    --btn-primary-hover: oklch(48% 0.14 67.9);
+
     /* Font definitions */
     --font-sans: Poppins, sans-serif;
     --font-serif: Libre Baskerville, serif;

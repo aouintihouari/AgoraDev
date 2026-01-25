@@ -28,17 +28,13 @@ const NavLinks = ({ isMobileNav }: { isMobileNav: boolean }) => {
             href={item.route}
             key={item.label}
             className={cn(
-              isActive ? "primary-gradient text-light-900 rounded-lg dark:text-white" : "text-dark-900 dark:text-white",
+              isActive
+                ? "primary-gradient dark:text-logo-secondary text-logo-secondary flex items-center rounded-lg"
+                : "text-logo-secondary dark:text-logo-secondary",
               "mx-4 flex items-center justify-start gap-4 bg-transparent p-4 sm:mx-0"
             )}
           >
-            <Image
-              src={item.imgURL}
-              alt={item.label}
-              width={20}
-              height={20}
-              className={cn({ "invert-colors": !isActive })}
-            />
+            <Image src={item.imgURL} alt={item.label} width={20} height={20} className={cn({ "": !isActive })} />
             <p className={cn(isActive ? "base-bold" : "base-medium", !isMobileNav && "max-lg:hidden")}>{item.label}</p>
           </Link>
         );
