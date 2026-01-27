@@ -1,6 +1,7 @@
 import mongoose, { Mongoose } from "mongoose";
+import logger from "./logger";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+const MONGODB_URI = process.env.DB_URI as string;
 
 if (!MONGODB_URI) throw new Error("MONGODB_URI is not defined");
 
@@ -18,18 +19,21 @@ let cached = global.mongoose;
 if (!cached) cached = global.mongoose = { conn: null, promise: null };
 
 const dbConnect = async (): Promise<Mongoose> => {
-  if (cached.conn) return cached.conn;
+  if (cached.conn) {
+    logger.info("Using existing mongoose connection");
+    return cached.conn;
+  }
   if (!cached.promise) {
     cached.promise = mongoose
       .connect(MONGODB_URI, {
         dbName: "AgoraDev",
       })
       .then((result) => {
-        console.log("Connected to MongoDB");
+        logger.info("Connect to MongoDB");
         return result;
       })
       .catch((e) => {
-        console.log("Error connecting to MongoDB", e);
+        logger.error("Error connecting to MongoDB", e);
         throw e;
       });
   }
