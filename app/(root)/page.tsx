@@ -5,8 +5,6 @@ import ROUTES from "@/constants/routes";
 import { Button } from "@/components/ui/button";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
-import handleError from "@/lib/handlers/error";
-import dbConnect from "@/lib/mongoose";
 
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
