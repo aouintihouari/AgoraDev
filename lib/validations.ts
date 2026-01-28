@@ -47,3 +47,53 @@ export const AskQuestionSchema = z.object({
     .min(1, { message: "At least one tag is required." })
     .max(3, { message: "You cannot add more than 3 tags." }),
 });
+
+export const UserSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  username: z.string().min(3, { message: "Username must be at least 3 characters long" }),
+  email: z.email({ message: "Invalid email address" }),
+  bio: z.string().optional(),
+  image: z.url({ message: "Invalid image URL" }).optional(),
+  location: z.string().optional(),
+  portfolio: z.url({ message: "Invalid portfolio URL" }).optional(),
+  reputation: z.number().optional(),
+});
+
+export const AccountSchema = z
+  .object({
+    userId: z.uuid({ message: "Invalid User ID format." }).optional(),
+    name: z.string().trim().min(2, { message: "Name must be at least 2 characters." }),
+    image: z.url().optional().or(z.literal("")),
+    email: z.email({ message: "Invalid email address." }),
+    provider: z.enum(["credentials", "google", "github"], {
+      message: "Invalid provider. Allowed: credentials, google, github.",
+    }),
+    providerAccountId: z.string().optional(),
+    password: z
+      .string()
+      .min(6, { message: "Password must be at least 6 characters long." })
+      .max(100)
+      .regex(/[A-Z]/, { message: "At least one uppercase letter." })
+      .regex(/[a-z]/, { message: "At least one lowercase letter." })
+      .regex(/[0-9]/, { message: "At least one number." })
+      .regex(/[^a-zA-Z0-9]/, { message: "At least one special character." })
+      .optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.provider === "credentials") {
+      if (!data.password) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["password"],
+          message: "Password is required for credentials login.",
+        });
+      }
+    }
+    if (data.provider !== "credentials" && !data.providerAccountId) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["providerAccountId"],
+        message: "Provider Account ID is required for OAuth.",
+      });
+    }
+  });
