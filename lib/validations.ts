@@ -61,7 +61,7 @@ export const UserSchema = z.object({
 
 export const AccountSchema = z
   .object({
-    userId: z.uuid({ message: "Invalid User ID format." }).optional(),
+    userId: z.string().min(1, { message: "Invalid User ID." }).optional(),
     name: z.string().trim().min(2, { message: "Name must be at least 2 characters." }),
     image: z.url().optional().or(z.literal("")),
     email: z.email({ message: "Invalid email address." }),
@@ -97,3 +97,16 @@ export const AccountSchema = z
       });
     }
   });
+
+export const SignInWithOAuthSchema = z.object({
+  provider: z.enum(["google", "github"], {
+    message: "",
+  }),
+  providerAccountId: z.string().optional(),
+  user: z.object({
+    name: z.string().min(1, { message: "Name is required." }),
+    username: z.string().min(3, { message: "Username must be at least 3 characters long." }),
+    email: z.email({ message: "Invalid email address." }),
+    address: z.url("Invalid image URL").optional(),
+  }),
+});
